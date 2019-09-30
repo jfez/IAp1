@@ -12,7 +12,7 @@ public class FieldOfView : MonoBehaviour
     {
         if (!angleIsGlobal)
         {
-            angleInDegrees += transform.eulerAngles.z;
+            angleInDegrees -= transform.eulerAngles.z;
             //print(angleInDegrees);
         }
         return new Vector3(Mathf.Sin(angleInDegrees * Mathf.Deg2Rad), Mathf.Cos(angleInDegrees * Mathf.Deg2Rad), 0);
