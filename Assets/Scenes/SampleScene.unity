@@ -366,7 +366,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 415776518}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.1459744, y: -0.1343299, z: -0.018950032}
+  m_LocalPosition: {x: 1.1459744, y: -0.1343299, z: 1}
   m_LocalScale: {x: 98.81907, y: 48.705585, z: 48.705585}
   m_Children: []
   m_Father: {fileID: 0}
@@ -568,7 +568,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 561475539}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.06, y: 0.04, z: -0.3828125}
+  m_LocalPosition: {x: -0.06, y: 0.04, z: 0}
   m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children: []
   m_Father: {fileID: 0}
@@ -797,7 +797,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1825549147}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.11, y: -6.99, z: -0.05784669}
+  m_LocalPosition: {x: -0.11, y: -6.99, z: 0}
   m_LocalScale: {x: 0.31180707, y: 0.31180707, z: 0.31180707}
   m_Children: []
   m_Father: {fileID: 0}
@@ -918,7 +918,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 512
   visibleTargets: []
-  meshResolution: 1
+  meshResolution: 10
   viewMeshFilter: {fileID: 322648424}
 --- !u!58 &2021057716
 CircleCollider2D:
@@ -1025,7 +1025,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2021057714}
   m_LocalRotation: {x: 0, y: 0, z: 1, w: 0}
-  m_LocalPosition: {x: -0.4, y: 6.92, z: -0.05784669}
+  m_LocalPosition: {x: -0.4, y: 6.92, z: 0}
   m_LocalScale: {x: 0.31180707, y: 0.31180707, z: 0.31180707}
   m_Children:
   - {fileID: 322648422}

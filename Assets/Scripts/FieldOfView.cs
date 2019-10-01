@@ -106,7 +106,6 @@ public class FieldOfView : MonoBehaviour
                 triangles[i*3] = 0;
                 triangles[i*3+1] = i+1;
                 triangles[i*3+2] = i+2;
-
             }
         }
 
@@ -121,7 +120,6 @@ public class FieldOfView : MonoBehaviour
         RaycastHit2D hit;
 
         if (hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask)){
-            
             return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
         }
 
