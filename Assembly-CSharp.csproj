@@ -56,6 +56,8 @@
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
      <Compile Include="Assets\Scripts\FieldOfView.cs" />
      <Compile Include="Assets\Scripts\Movement.cs" />
+     <None Include="Assets\Shaders\Stencil Object.shader" />
+     <None Include="Assets\Shaders\Stencil Mask.shader" />
  <Reference Include="Unity.TextMeshPro.Editor">
  <HintPath>D:/usuario/Documents/GitHub/IAp1/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
  </Reference>
