@@ -21,6 +21,8 @@ public class FieldOfView : MonoBehaviour
 
     private Mesh viewMesh;
 
+    private Vector3 multiplier = new Vector3(1f, 1f, 1f);
+
     
 
     // Start is called before the first frame update
@@ -118,9 +120,14 @@ public class FieldOfView : MonoBehaviour
     ViewCastInfo ViewCast (float globalAngle){
         Vector3 dir = DirFromAngle (globalAngle, true);
         RaycastHit2D hit;
+        Vector2 closestPoint;
 
         if (hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask)){
-            return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+            if (hit.collider.OverlapPoint(hit.point + Vector2.Scale(dir, multiplier)))
+                return new ViewCastInfo(true, hit.point + Vector2.Scale(dir, multiplier), hit.distance, globalAngle);
+            
+            closestPoint = ClosestPoint(hit.collider, hit.point + Vector2.Scale(dir, multiplier));
+            return new ViewCastInfo(true, closestPoint, hit.distance, globalAngle);
         }
 
         else {
@@ -142,5 +149,16 @@ public class FieldOfView : MonoBehaviour
         }
     }
     
+
+    public Vector2 ClosestPoint(Collider2D col, Vector2 point)
+    {
+        GameObject go = new GameObject("tempCollider");
+        go.transform.position = point;
+        CircleCollider2D c = go.AddComponent<CircleCollider2D>();
+        c.radius = 0.1f;
+        ColliderDistance2D dist = col.Distance(c);
+        Object.Destroy(go);
+        return dist.pointA;
+    }
     
 }
