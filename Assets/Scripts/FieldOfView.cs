@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 
 public class FieldOfView : MonoBehaviour
@@ -123,13 +124,21 @@ public class FieldOfView : MonoBehaviour
         Vector2 closestPoint;
 
         if (hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask)){
-            if (hit.collider.OverlapPoint(hit.point + Vector2.Scale(dir, multiplier)))
-                return new ViewCastInfo(true, hit.point + Vector2.Scale(dir, multiplier), hit.distance, globalAngle);
-            
-            closestPoint = ClosestPoint(hit.collider, hit.point + Vector2.Scale(dir, multiplier));
-            return new ViewCastInfo(true, closestPoint, hit.distance, globalAngle);
+            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Stencil")){
+                if (Vector2.Distance(hit.point + Vector2.Scale(dir, multiplier), transform.position) < viewRadius){
+                    if (hit.collider.OverlapPoint(hit.point + Vector2.Scale(dir, multiplier))){
+                        return new ViewCastInfo(true, hit.point + Vector2.Scale(dir, multiplier), hit.distance, globalAngle);
+                    } else {
+                        closestPoint = ClosestPoint(hit.collider, hit.point + Vector2.Scale(dir, multiplier));
+                        return new ViewCastInfo(true, closestPoint, hit.distance, globalAngle);
+                    }
+                } else {
+                    return new ViewCastInfo(true, transform.position + dir * viewRadius, hit.distance, globalAngle);
+                }
+            } else {
+                return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+            }
         }
-
         else {
             return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
         }
