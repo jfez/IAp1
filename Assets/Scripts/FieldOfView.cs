@@ -26,6 +26,8 @@ public class FieldOfView : MonoBehaviour
 
     private Vector3 multiplier = new Vector3(1f, 1f, 1f);
 
+    private bool isStencil;
+
     
 
     // Start is called before the first frame update
@@ -35,6 +37,7 @@ public class FieldOfView : MonoBehaviour
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
         maskCutawayDst = 1f;
+        isStencil = SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Stencil");
         
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
@@ -106,7 +109,7 @@ public class FieldOfView : MonoBehaviour
 
         vertices[0] = Vector3.zero;
 
-        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Stencil")){
+        if (isStencil){
             for(int i = 0; i<vertexCount - 1; i++){
                 vertices [i + 1] = transform.InverseTransformPoint(viewPoints [i]) + Vector3.up * maskCutawayDst;
 
