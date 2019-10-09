@@ -20,6 +20,8 @@ public class FieldOfView : MonoBehaviour
 
     public MeshFilter viewMeshFilter;
 
+    public float maskCutawayDst;
+
     private Mesh viewMesh;
 
     private Vector3 multiplier = new Vector3(1f, 1f, 1f);
@@ -32,6 +34,7 @@ public class FieldOfView : MonoBehaviour
         viewMesh = new Mesh();
         viewMesh.name = "View Mesh";
         viewMeshFilter.mesh = viewMesh;
+        maskCutawayDst = 1f;
         
         StartCoroutine("FindTargetsWithDelay", .2f);
     }
@@ -65,8 +68,9 @@ public class FieldOfView : MonoBehaviour
             if(Vector3.Angle(transform.up, dirToTarget) < viewAngle/2){
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
 
-                if (!Physics2D.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)){
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)){
                     visibleTargets.Add(target);
+                    print("te cacé!");
                 }
             }
 
@@ -102,15 +106,34 @@ public class FieldOfView : MonoBehaviour
 
         vertices[0] = Vector3.zero;
 
-        for(int i = 0; i<vertexCount - 1; i++){
-            vertices[i+1] = transform.InverseTransformPoint(viewPoints[i]);
+        if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Stencil")){
+            for(int i = 0; i<vertexCount - 1; i++){
+                vertices [i + 1] = transform.InverseTransformPoint(viewPoints [i]) + Vector3.up * maskCutawayDst;
 
-            if(i<vertexCount-2){
-                triangles[i*3] = 0;
-                triangles[i*3+1] = i+1;
-                triangles[i*3+2] = i+2;
+                if(i<vertexCount-2){
+                    triangles[i*3] = 0;
+                    triangles[i*3+1] = i+1;
+                    triangles[i*3+2] = i+2;
+                }
             }
+
+            
+
         }
+
+        else{
+            for(int i = 0; i<vertexCount - 1; i++){
+                vertices[i+1] = transform.InverseTransformPoint(viewPoints[i]);
+
+                if(i<vertexCount-2){
+                    triangles[i*3] = 0;
+                    triangles[i*3+1] = i+1;
+                    triangles[i*3+2] = i+2;
+                }
+            }
+
+        }
+        
 
         viewMesh.Clear();
         viewMesh.vertices = vertices;
@@ -120,11 +143,13 @@ public class FieldOfView : MonoBehaviour
 
     ViewCastInfo ViewCast (float globalAngle){
         Vector3 dir = DirFromAngle (globalAngle, true);
-        RaycastHit2D hit;
-        Vector2 closestPoint;
+        //RaycastHit2D hit;
+        //Vector2 closestPoint;
+        RaycastHit hit;
 
-        if (hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask)){
-            if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Stencil")){
+        if (Physics.Raycast(transform.position, dir, out hit, viewRadius, obstacleMask)){ //hit = Physics2D.Raycast(transform.position, dir, viewRadius, obstacleMask
+            return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
+            /*if (SceneManager.GetActiveScene() == SceneManager.GetSceneByName("Stencil")){
                 if (Vector2.Distance(hit.point + Vector2.Scale(dir, multiplier), transform.position) < viewRadius){
                     if (hit.collider.OverlapPoint(hit.point + Vector2.Scale(dir, multiplier))){
                         return new ViewCastInfo(true, hit.point + Vector2.Scale(dir, multiplier), hit.distance, globalAngle);
@@ -137,7 +162,7 @@ public class FieldOfView : MonoBehaviour
                 }
             } else {
                 return new ViewCastInfo(true, hit.point, hit.distance, globalAngle);
-            }
+            }*/
         }
         else {
             return new ViewCastInfo(false, transform.position + dir * viewRadius, viewRadius, globalAngle);
