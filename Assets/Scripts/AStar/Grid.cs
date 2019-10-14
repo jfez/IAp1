@@ -27,14 +27,34 @@ public class Grid : MonoBehaviour
 			for (int y = 0; y < gridSizeY; y ++) {
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics.CheckSphere(worldPoint,nodeRadius,unwalkableMask));
-				grid[x,y] = new Node(walkable,worldPoint);
+				grid[x,y] = new Node(walkable,worldPoint, x, y);
 			}
 		}
 	}
 
+	public List<Node> GetNeighbours(Node node) {	
+		List<Node> neighbours = new List<Node>();
+
+		for (int x = -1; x <= 1; x++) {
+			for (int y = -1; y <= 1; y++) {
+				if (x == 0 && y == 0)	//we don't want the node, we want its neighbours
+					continue;
+
+				int checkX = node.gridX + x;
+				int checkY = node.gridY + y;
+
+				if (checkX >= 0 && checkX < gridSizeX && checkY >= 0 && checkY < gridSizeY) {	//check if the neighbours are in the grid
+					neighbours.Add(grid[checkX,checkY]);
+				}
+			}
+		}
+
+		return neighbours;
+	}
+
 	public Node NodeFromWorldPoint(Vector3 worldPosition) {
 		float percentX = (worldPosition.x + gridWorldSize.x/2) / gridWorldSize.x;
-		float percentY = (worldPosition.z + gridWorldSize.y/2) / gridWorldSize.y;       //y
+		float percentY = (worldPosition.y + gridWorldSize.y/2) / gridWorldSize.y;       
 		percentX = Mathf.Clamp01(percentX);
 		percentY = Mathf.Clamp01(percentY);
 
@@ -43,6 +63,8 @@ public class Grid : MonoBehaviour
 		return grid[x,y];
 	}
 
+	
+	public List<Node> path;
 	void OnDrawGizmos() {
 		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,gridWorldSize.y,1));
 
@@ -50,6 +72,11 @@ public class Grid : MonoBehaviour
 		if (grid != null) {
 			foreach (Node n in grid) {
 				Gizmos.color = (n.walkable)?Color.white:Color.red;
+				if(path != null){		//draw the path
+					if(path.Contains(n)){
+						Gizmos.color = Color.black;
+					}
+				}
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
 			}
 		}
@@ -60,9 +87,24 @@ public class Node {
 	
 	public bool walkable;
 	public Vector3 worldPosition;
+	public int gridX;
+	public int gridY;
+
+	public int gCost;
+	public int hCost;
+
+	public Node parent;	//we need it to rebuild the path
 	
-	public Node(bool _walkable, Vector3 _worldPos) {
+	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY) {
 		walkable = _walkable;
 		worldPosition = _worldPos;
+		gridX = _gridX;
+		gridY = _gridY;
+	}
+
+	public int fCost {
+		get {
+			return gCost + hCost;
+		}
 	}
 }
