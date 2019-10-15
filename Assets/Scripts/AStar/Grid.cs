@@ -11,12 +11,20 @@ public class Grid : MonoBehaviour
 
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
+	bool displayGridGizmos;
 
-	void Start() {
+	void Awake() {
 		nodeDiameter = nodeRadius*2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
 		CreateGrid();
+		displayGridGizmos = true;
+	}
+
+	public int MaxSize {
+		get {
+			return gridSizeX * gridSizeY;
+		}
 	}
 
 	void CreateGrid() {
@@ -69,21 +77,24 @@ public class Grid : MonoBehaviour
 		Gizmos.DrawWireCube(transform.position,new Vector3(gridWorldSize.x,gridWorldSize.y,1));
 
 	
-		if (grid != null) {
+		if (grid != null && displayGridGizmos) {
 			foreach (Node n in grid) {
 				Gizmos.color = (n.walkable)?Color.white:Color.red;
-				if(path != null){		//draw the path
-					if(path.Contains(n)){
+				if (path != null){
+					if (path.Contains(n)){
 						Gizmos.color = Color.black;
 					}
+							
+
 				}
+						
 				Gizmos.DrawCube(n.worldPosition, Vector3.one * (nodeDiameter-.1f));
 			}
 		}
 	}
 }
 
-public class Node {
+public class Node: IHeapItem<Node> {
 	
 	public bool walkable;
 	public Vector3 worldPosition;
@@ -94,6 +105,8 @@ public class Node {
 	public int hCost;
 
 	public Node parent;	//we need it to rebuild the path
+
+	int heapIndex;
 	
 	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY) {
 		walkable = _walkable;
@@ -106,5 +119,22 @@ public class Node {
 		get {
 			return gCost + hCost;
 		}
+	}
+
+	public int HeapIndex {
+		get {
+			return heapIndex;
+		}
+		set {
+			heapIndex = value;
+		}
+	}
+
+	public int CompareTo(Node nodeToCompare) {
+		int compare = fCost.CompareTo(nodeToCompare.fCost);
+		if (compare == 0) {
+			compare = hCost.CompareTo(nodeToCompare.hCost);
+		}
+		return -compare;
 	}
 }
