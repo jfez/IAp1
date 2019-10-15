@@ -14,16 +14,15 @@ public class LookDecision : Decision
 
     private bool Look(StateController controller)
     {
-        RaycastHit2D hit = Physics2D.CircleCast(controller.eyes.position, controller.enemyStats.lookRange, controller.eyes.forward);
-        if (hit != false && hit.collider.CompareTag("Player"))
+        Collider[] colliders = Physics.OverlapSphere(controller.eyes.position, controller.enemyStats.lookRange);
+        for (int i = 0; i < colliders.Length; i++)
         {
-            Debug.Log("Jugador avistado");
-            controller.chaseTarget = hit.transform;
-            return true;
+            if (colliders[i].CompareTag("Player"))
+            {
+                controller.chaseTarget = colliders[i].transform;
+                return true;
+            }
         }
-        else
-        {
-            return false;
-        }
+        return false;
     }
 }

@@ -4,18 +4,24 @@ using UnityEngine;
 
 public class Unit : MonoBehaviour
 {
-    public Transform target;
-	float speed = 5;
+	float speed = 2;
 	Vector3[] path;
 	int targetIndex;
 
+    public float timeElapsedSinceLastSearch;
+
 	void Start() {
 		//We will not want this call in the Start, it's just a test
-        PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+        // PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
 	}
 
+    void Update()
+    {
+        timeElapsedSinceLastSearch += Time.deltaTime;
+    }
+
     //This is the method that we sould call into the FSM
-    public void SearchPath(){
+    public void SearchPath(Transform target){
         PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
     }
 

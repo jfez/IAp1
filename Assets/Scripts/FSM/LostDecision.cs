@@ -14,15 +14,15 @@ public class LostDecision : Decision
 
     private bool Lost(StateController controller)
     {
-        if (Vector2.Distance(controller.transform.position, controller.chaseTarget.position) > controller.enemyStats.lookRange)
+        Collider[] colliders = Physics.OverlapSphere(controller.eyes.position, controller.enemyStats.lookRange);
+        for (int i = 0; i < colliders.Length; i++)
         {
-            Debug.Log("Jugador perdido");
-            controller.chaseTarget = null;
-            return true;
+            if (colliders[i].CompareTag("Player"))
+            {
+                return false;
+            }
         }
-        else
-        {
-            return false;
-        }
+        controller.chaseTarget = null;
+        return true;
     }
 }
