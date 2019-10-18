@@ -7,7 +7,10 @@ public class Grid : MonoBehaviour
     public LayerMask unwalkableMask;
 	public Vector2 gridWorldSize;
 	public float nodeRadius;
+	public TerrainType[] walkableRegions;
+	LayerMask walkableMask;
 	Node[,] grid;
+	Dictionary<int, int> walkableRegionsDictionary = new Dictionary<int, int>();
 
 	float nodeDiameter;
 	int gridSizeX, gridSizeY;
@@ -17,6 +20,11 @@ public class Grid : MonoBehaviour
 		nodeDiameter = nodeRadius*2;
 		gridSizeX = Mathf.RoundToInt(gridWorldSize.x/nodeDiameter);
 		gridSizeY = Mathf.RoundToInt(gridWorldSize.y/nodeDiameter);
+
+		foreach (TerrainType region in walkableRegions){
+			walkableMask |= region.terrainMask.value;
+			walkableRegionsDictionary.Add((int) Mathf.Log(region.terrainMask.value, 2), region.terrainPenalty);
+		}
 		CreateGrid();
 		displayGridGizmos = true;
 	}
@@ -35,7 +43,18 @@ public class Grid : MonoBehaviour
 			for (int y = 0; y < gridSizeY; y ++) {
 				Vector3 worldPoint = worldBottomLeft + Vector3.right * (x * nodeDiameter + nodeRadius) + Vector3.up * (y * nodeDiameter + nodeRadius);
 				bool walkable = !(Physics.CheckSphere(worldPoint,nodeRadius,unwalkableMask));
-				grid[x,y] = new Node(walkable,worldPoint, x, y);
+
+				int movementPenalty = 0;
+
+				if (walkable){
+					Ray ray = new Ray(worldPoint + Vector3.up * 50, Vector3.down);
+					RaycastHit hit;
+					if (Physics.Raycast(ray, out hit, 100, walkableMask)){
+						walkableRegionsDictionary.TryGetValue(hit.collider.gameObject.layer, out movementPenalty);
+					}
+				}
+
+				grid[x,y] = new Node(walkable,worldPoint, x, y, movementPenalty);
 			}
 		}
 	}
@@ -100,6 +119,7 @@ public class Node: IHeapItem<Node> {
 	public Vector3 worldPosition;
 	public int gridX;
 	public int gridY;
+	public int movementPenalty;
 
 	public int gCost;
 	public int hCost;
@@ -108,11 +128,12 @@ public class Node: IHeapItem<Node> {
 
 	int heapIndex;
 	
-	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY) {
+	public Node(bool _walkable, Vector3 _worldPos, int _gridX, int _gridY, int _penalty) {
 		walkable = _walkable;
 		worldPosition = _worldPos;
 		gridX = _gridX;
 		gridY = _gridY;
+		movementPenalty = _penalty;
 	}
 
 	public int fCost {
@@ -137,4 +158,10 @@ public class Node: IHeapItem<Node> {
 		}
 		return -compare;
 	}
+}
+
+[System.Serializable]
+public class TerrainType{
+	public LayerMask terrainMask;
+	public int terrainPenalty;
 }

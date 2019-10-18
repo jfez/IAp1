@@ -59,7 +59,7 @@ public class Pathfinding : MonoBehaviour
 					
 					//Calculate if the way to reach that neighbour node is the most optimized and add it to the openSet if it was not there
                 	//If we have found a most optimized way to that node, we change its parent to change the path
-					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour);
+					int newMovementCostToNeighbour = currentNode.gCost + GetDistance(currentNode, neighbour) + neighbour.movementPenalty;
 					if (newMovementCostToNeighbour < neighbour.gCost || !openSet.Contains(neighbour)) {
 						neighbour.gCost = newMovementCostToNeighbour;
 						neighbour.hCost = GetDistance(neighbour, targetNode);
@@ -67,6 +67,8 @@ public class Pathfinding : MonoBehaviour
 						
 						if (!openSet.Contains(neighbour))
 							openSet.Add(neighbour);
+						else
+							openSet.UpdateItem(neighbour);
 					}
 				}
 			}
