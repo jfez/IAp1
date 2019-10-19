@@ -321,6 +321,7 @@ MonoBehaviour:
       serializedVersion: 2
       m_Bits: 256
     terrainPenalty: 0
+  obstacleProximityPenalty: 10
 --- !u!4 &388162165
 Transform:
   m_ObjectHideFlags: 0
@@ -572,10 +573,10 @@ GameObject:
   - component: {fileID: 560741839}
   - component: {fileID: 560741838}
   - component: {fileID: 560741837}
-  - component: {fileID: 560741836}
   - component: {fileID: 560741840}
   - component: {fileID: 560741835}
   - component: {fileID: 560741841}
+  - component: {fileID: 560741836}
   m_Layer: 0
   m_Name: FSM_ENEMY
   m_TagString: Untagged
@@ -609,6 +610,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeElapsedSinceLastSearch: 0
+  speed: 2
+  turnSpeed: 5
+  turnDist: 5
+  stoppingDist: 10
 --- !u!114 &560741837
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -659,7 +664,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: cdeb291f740cb954388239b070f68534, type: 3}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: 0.58513045, b: 0.5707547, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -1903,6 +1908,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timeElapsedSinceLastSearch: 0
+  speed: 2
+  turnSpeed: 3
+  turnDist: 5
+  stoppingDist: 10
 --- !u!1 &1874308744
 GameObject:
   m_ObjectHideFlags: 0

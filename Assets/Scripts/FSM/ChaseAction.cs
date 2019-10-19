@@ -16,9 +16,9 @@ public class ChaseAction : Action
     {
         if (aStar == null) aStar = controller.GetComponent<Unit>();
 
-        if (aStar.timeElapsedSinceLastSearch >= 0.5f)
+        if (aStar.timeElapsedSinceLastSearch >= .25f)
         {
-            aStar.SearchPath(controller.chaseTarget);
+            aStar.StartCoroutine(aStar.SearchPath(controller.chaseTarget));
             aStar.timeElapsedSinceLastSearch = 0;
         }
 
