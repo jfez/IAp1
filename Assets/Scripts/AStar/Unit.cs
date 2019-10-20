@@ -15,11 +15,6 @@ public class Unit : MonoBehaviour
 
     Path path;
 
-	void Start() {
-		//We will not want this call in the Start, it's just a test
-        // PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
-	}
-
     void Update()
     {
         timeElapsedSinceLastSearch += Time.deltaTime;
@@ -32,7 +27,7 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(.3f);
         }
 
-        PathRequestManager.RequestPath(transform.position,target.position, OnPathFound);
+        PathRequestManager.RequestPath(new PathRequest(transform.position,target.position, OnPathFound));
     }
 
 	public void OnPathFound(Vector3[] waypoints, bool pathSuccessful) {
@@ -51,7 +46,7 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(.3f);
         }
 
-        PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+        PathRequestManager.RequestPath(new PathRequest(transform.position, target.position, OnPathFound));
 
         float sqrMoveThreshold = pathUpdateMoveThreshold * pathUpdateMoveThreshold;
         Vector3 targetPosOld = target.position;
@@ -61,7 +56,7 @@ public class Unit : MonoBehaviour
             yield return new WaitForSeconds(minPathUpdateTime);
             if ((target.position - targetPosOld).sqrMagnitude > sqrMoveThreshold)
             {
-                PathRequestManager.RequestPath(transform.position, target.position, OnPathFound);
+                PathRequestManager.RequestPath(new PathRequest(transform.position, target.position, OnPathFound));
                 targetPosOld = target.position;
             }
         }
@@ -71,8 +66,6 @@ public class Unit : MonoBehaviour
     {
         bool followingPath = true;
         int pathIndex = 0;
-        Debug.Log("following path...");
-        //transform.up = path.lookPoints[0] - transform.position;
 
         float speedPercent = 1;
 

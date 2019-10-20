@@ -21,9 +21,5 @@ public class ChaseAction : Action
             aStar.StartCoroutine(aStar.SearchPath(controller.chaseTarget));
             aStar.timeElapsedSinceLastSearch = 0;
         }
-
-        /*Vector3 targetPoint = controller.chaseTarget.position;
-        controller.transform.position = Vector2.MoveTowards(controller.transform.position, targetPoint, controller.enemyStats.moveSpeed * Time.deltaTime);
-        controller.transform.up = targetPoint - controller.transform.position;*/
     }
 }

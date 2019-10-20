@@ -5,6 +5,8 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableAI/Actions/Patrol")]
 public class PatrolAction : Action
 {
+    Vector2 velocity = Vector2.zero;
+
     public override void Act(StateController controller)
     {
         Patrol(controller);
@@ -12,13 +14,14 @@ public class PatrolAction : Action
 
     private void Patrol(StateController controller)
     {
-        Debug.Log("Apatrullando la ciudad...");
+        Vector3 velocity = new Vector3(0.5f, 0.5f, 0.5f);
+        Vector3 direction = Vector3.SmoothDamp(controller.transform.up.normalized, (controller.wayPointList[controller.nextWayPoint].position - controller.transform.position).normalized, ref velocity, Time.deltaTime * controller.enemyStats.searchingTurnSpeed);
 
-        Vector3 targetPoint = controller.wayPointList[controller.nextWayPoint].position;
-        controller.transform.position = Vector2.MoveTowards(controller.transform.position, targetPoint, controller.enemyStats.moveSpeed * Time.deltaTime);
-        controller.transform.up = targetPoint - controller.transform.position;
+        float speedPercent = Mathf.Clamp01((controller.wayPointList[controller.nextWayPoint].position - controller.transform.position).magnitude / controller.enemyStats.attackRange);
+        controller.transform.up = new Vector3(direction.x, direction.y, 0f);
+        controller.transform.Translate(Vector3.up * Time.deltaTime * controller.enemyStats.moveSpeed * speedPercent, Space.Self);
 
-        if (Vector2.Distance(controller.transform.position, targetPoint) < 0.5)
+        if (Vector2.Distance(controller.eyes.position, controller.wayPointList[controller.nextWayPoint].position) < 0.5)
         {
             controller.nextWayPoint = (controller.nextWayPoint + 1) % controller.wayPointList.Count;
         }

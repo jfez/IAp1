@@ -19,4 +19,4 @@ MonoBehaviour:
   attackForce: 15
   attackDamgae: 50
   searchDuration: 4
-  searchingTurnSpeed: 120
+  searchingTurnSpeed: 5

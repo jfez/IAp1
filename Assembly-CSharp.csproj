@@ -71,6 +71,7 @@
     <Compile Include="Assets\Scripts\FieldOfView.cs" />
     <Compile Include="Assets\Scripts\FSM\Action.cs" />
     <Compile Include="Assets\Scripts\FSM\ActiveStateDecision.cs" />
+    <Compile Include="Assets\Scripts\FSM\ArrivalDecision.cs" />
     <Compile Include="Assets\Scripts\FSM\AttackAction.cs" />
     <Compile Include="Assets\Scripts\FSM\ChaseAction.cs" />
     <Compile Include="Assets\Scripts\FSM\Decision.cs" />
