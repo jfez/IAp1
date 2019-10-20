@@ -14,8 +14,15 @@ public class StateController : MonoBehaviour
     [HideInInspector] public int nextWayPoint;
     [HideInInspector] public Transform chaseTarget;
     [HideInInspector] public float stateTimeElapsed;
+    [HideInInspector] public Unit aStarUnit;
 
     private bool aiActive;
+    
+
+    void Awake()
+    {
+        aStarUnit = GetComponent<Unit>();
+    }
 
     void Start()
     {

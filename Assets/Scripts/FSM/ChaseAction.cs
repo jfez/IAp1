@@ -5,8 +5,6 @@ using UnityEngine;
 [CreateAssetMenu(menuName = "PluggableAI/Actions/Chase")]
 public class ChaseAction : Action
 {
-    private Unit aStar = null;
-
     public override void Act(StateController controller)
     {
         Chase(controller);
@@ -14,12 +12,10 @@ public class ChaseAction : Action
 
     private void Chase(StateController controller)
     {
-        if (aStar == null) aStar = controller.GetComponent<Unit>();
-
-        if (aStar.timeElapsedSinceLastSearch >= .25f)
+        if (controller.aStarUnit.timeElapsedSinceLastSearch >= .25f)
         {
-            aStar.StartCoroutine(aStar.SearchPath(controller.chaseTarget));
-            aStar.timeElapsedSinceLastSearch = 0;
+            controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.chaseTarget));
+            controller.aStarUnit.timeElapsedSinceLastSearch = 0;
         }
     }
 }

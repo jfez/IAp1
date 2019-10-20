@@ -714,6 +714,7 @@ MonoBehaviour:
   nextWayPoint: 0
   chaseTarget: {fileID: 0}
   stateTimeElapsed: 0
+  aStarUnit: {fileID: 0}
 --- !u!1 &561475539
 GameObject:
   m_ObjectHideFlags: 0
@@ -2324,10 +2325,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5721d332c2ca28e43925d01082f59704, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  currentState: {fileID: 11400000, guid: 0de21508822404245b56803406e0be7c, type: 2}
+  currentState: {fileID: 11400000, guid: 57e43bbe987a1ca45b1b798ebfcbcf1c, type: 2}
   enemyStats: {fileID: 11400000, guid: 33a3c9f98dfc17f41ac328830ca426c2, type: 2}
   eyes: {fileID: 2121619837}
-  remainState: {fileID: 11400000, guid: 8dbc62c3561017d4393df865ad70c6d4, type: 2}
+  remainState: {fileID: 11400000, guid: 06ae4346b6a985d48a2227222cc09a0c, type: 2}
   wayPointList:
   - {fileID: 634739609}
   - {fileID: 1935286439}
@@ -2335,6 +2336,7 @@ MonoBehaviour:
   nextWayPoint: 0
   chaseTarget: {fileID: 0}
   stateTimeElapsed: 0
+  aStarUnit: {fileID: 0}
 --- !u!135 &2121619834
 SphereCollider:
   m_ObjectHideFlags: 0

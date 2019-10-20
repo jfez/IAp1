@@ -23,7 +23,7 @@ public class LostDecision : Decision
             }
         }
         controller.chaseTarget = null;
-        controller.GetComponent<Unit>().StartCoroutine(controller.GetComponent<Unit>().SearchPath(controller.wayPointList[controller.nextWayPoint]));
+        controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
         return true;
     }
 }
