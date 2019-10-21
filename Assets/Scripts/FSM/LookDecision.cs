@@ -14,7 +14,12 @@ public class LookDecision : Decision
 
     private bool Look(StateController controller)
     {
-        Collider[] colliders = Physics.OverlapSphere(controller.eyes.position, controller.enemyStats.lookRange);
+        if (controller.fieldOfView.visibleTargets.Count != 0) {
+                controller.chaseTarget = controller.fieldOfView.visibleTargets[0].transform;
+                return true;
+        }
+        return false;
+        /*Collider[] colliders = Physics.OverlapSphere(controller.eyes.position, controller.enemyStats.lookRange);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].CompareTag("Player"))
@@ -23,6 +28,6 @@ public class LookDecision : Decision
                 return true;
             }
         }
-        return false;
+        return false;*/
     }
 }

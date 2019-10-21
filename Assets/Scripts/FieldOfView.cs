@@ -59,7 +59,7 @@ public class FieldOfView : MonoBehaviour
         
         visibleTargets.Clear();
         
-        Collider2D[] targetsInViewRadius = Physics2D.OverlapCircleAll(transform.position, viewRadius, targetMask);
+        Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
         
 
 
@@ -73,7 +73,7 @@ public class FieldOfView : MonoBehaviour
 
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)){
                     visibleTargets.Add(target);
-                    print("te cacé!");
+                    //print("te cacé!");
                 }
             }
 

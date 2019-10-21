@@ -16,12 +16,15 @@ public class StateController : MonoBehaviour
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public Unit aStarUnit;
 
+    [HideInInspector] public FieldOfView fieldOfView;
+
     private bool aiActive;
     
 
     void Awake()
     {
         aStarUnit = GetComponent<Unit>();
+        fieldOfView = GetComponent<FieldOfView>();
     }
 
     void Start()
