@@ -4,9 +4,11 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-    const float NORMALSPEED = 70f;
-    const float RUNNINGSPEED = 100f;
-    const float STEALTHSPEED = 30f;
+    const float NORMALSPEED = 100f;
+    const float RUNNINGSPEED = 150;
+    const float STEALTHSPEED = 50;
+
+    public GameObject baliza;
     
 
     private float speed;             //Floating point variable to store the player's movement speed.
@@ -19,6 +21,13 @@ public class Movement : MonoBehaviour
     private Vector3 moveFor;
     private Vector3 moveSide;
     private int floorMask;
+    private float dashForce;
+    [HideInInspector] public float timerDash;
+    [HideInInspector] public float dashCD;
+
+    [HideInInspector] public bool balizaON;
+
+    private GameObject balizaInstantiated;
 
 
     // Use this for initialization
@@ -31,6 +40,10 @@ public class Movement : MonoBehaviour
         horizontal = 0;
         vertical = 0;
         floorMask = LayerMask.GetMask("Floor");
+        dashForce = 7500f;
+        dashCD = 3f;
+        timerDash = dashCD;
+        balizaON = false;
     }
 
     void Update ()
@@ -55,12 +68,36 @@ public class Movement : MonoBehaviour
             speed = NORMALSPEED;
         }
 
+        if(Input.GetKeyDown(KeyCode.Space) && timerDash > dashCD){
+            rb2d.AddForce(transform.up*dashForce);
+            timerDash = 0f;   
+        }
+
+        if(Input.GetKeyDown(KeyCode.E)){
+            
+            if(!balizaON){
+                balizaInstantiated = Instantiate(baliza, transform.position, Quaternion.identity);
+                balizaON = true;   
+
+            }
+
+            else{
+                transform.position = balizaInstantiated.transform.position;
+                Destroy(balizaInstantiated);
+                balizaON = false;
+
+            }
+            
+        }
+
 
         //Vector2 moveInput = new Vector2(Input.GetAxisRaw("Horizontal"), Input.GetAxisRaw("Vertical"));
         //moveVelocity = moveInput.normalized * speed;
 
         horizontal = Input.GetAxisRaw("Horizontal");
         vertical = Input.GetAxisRaw("Vertical");
+
+        timerDash += Time.deltaTime;
 
         
 

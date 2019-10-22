@@ -14,7 +14,26 @@ public class LostDecision : Decision
 
     private bool Lost(StateController controller)
     {
-        Collider[] colliders = Physics.OverlapSphere(controller.eyes.position, controller.enemyStats.lookRange);
+        if (controller.fieldOfView.visibleTargets.Count == 0) {
+                
+                if(!controller.timing){
+                    controller.StartTiming();
+                }
+
+                else{
+                    //Time after lost the target that the enemy waits to return to his patrol
+                    if(controller.timer > 2){
+                        controller.StopTiming();
+                        controller.chaseTarget = null;
+                        controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
+                        return true;
+                    }
+                }
+                
+        }
+        return false;
+        
+        /*Collider[] colliders = Physics.OverlapSphere(controller.eyes.position, controller.enemyStats.lookRange);
         for (int i = 0; i < colliders.Length; i++)
         {
             if (colliders[i].CompareTag("Player"))
@@ -24,6 +43,6 @@ public class LostDecision : Decision
         }
         controller.chaseTarget = null;
         controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
-        return true;
+        return true;*/
     }
 }

@@ -210,11 +210,17 @@ public class Node: IHeapItem<Node> {
 	}
 
 	public int CompareTo(Node nodeToCompare) {
-		int compare = fCost.CompareTo(nodeToCompare.fCost);
-		if (compare == 0) {
-			compare = hCost.CompareTo(nodeToCompare.hCost);
+		if(nodeToCompare != null){
+			int compare = fCost.CompareTo(nodeToCompare.fCost);
+			if (compare == 0) {
+				compare = hCost.CompareTo(nodeToCompare.hCost);
+			}
+			return -compare;
 		}
-		return -compare;
+
+		return 0;		//Avoid NullObjectReference
+		
+		
 	}
 }
 

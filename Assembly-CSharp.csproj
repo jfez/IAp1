@@ -61,6 +61,7 @@
      <Compile Include="Assets\Scripts\AStar\PathRequestManager.cs" />
      <Compile Include="Assets\Scripts\AStar\Unit.cs" />
      <Compile Include="Assets\Scripts\CameraMovement.cs" />
+     <Compile Include="Assets\Scripts\DashTimer.cs" />
      <Compile Include="Assets\Scripts\FieldOfView.cs" />
      <Compile Include="Assets\Scripts\FSM\Action.cs" />
      <Compile Include="Assets\Scripts\FSM\ActiveStateDecision.cs" />

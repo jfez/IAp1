@@ -18,6 +18,9 @@ public class StateController : MonoBehaviour
 
     [HideInInspector] public FieldOfView fieldOfView;
 
+    [HideInInspector] public float timer;
+    [HideInInspector] public bool timing;
+
     private bool aiActive;
     
 
@@ -25,6 +28,8 @@ public class StateController : MonoBehaviour
     {
         aStarUnit = GetComponent<Unit>();
         fieldOfView = GetComponent<FieldOfView>();
+        timing = false;
+        timer = 0f;
     }
 
     void Start()
@@ -37,6 +42,9 @@ public class StateController : MonoBehaviour
         if (!aiActive)
             return;
         currentState.UpdateState(this);
+        if (timing){
+            Clock();
+        }
     }
 
     void OnDrawGizmos()
@@ -66,5 +74,18 @@ public class StateController : MonoBehaviour
     private void OnExitState()
     {
         stateTimeElapsed = 0;
+    }
+
+    private void Clock(){
+        timer += Time.deltaTime;
+    }
+
+    public void StartTiming(){
+        timer = 0f;
+        timing = true;
+    }
+
+    public void StopTiming(){
+        timing = false;
     }
 }
