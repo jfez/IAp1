@@ -4,5 +4,14 @@
 EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
-  m_Scenes: []
+  m_Scenes:
+  - enabled: 1
+    path: Assets/Scenes/Initial.unity
+    guid: 2ee5affc4f103cb43a8ac85e9dc62120
+  - enabled: 1
+    path: Assets/Scenes/Level1.unity
+    guid: f5e6fbd3bb7ec5f45b34e40803c8f3c7
+  - enabled: 1
+    path: Assets/Scenes/Stencil.unity
+    guid: 59416b9a791b741489216087ab9780e8
   m_configObjects: {}

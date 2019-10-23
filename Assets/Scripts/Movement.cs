@@ -28,6 +28,8 @@ public class Movement : MonoBehaviour
 
     private GameObject balizaInstantiated;
 
+    private ExitManager exitManager;
+
 
     // Use this for initialization
     void Start()
@@ -43,6 +45,7 @@ public class Movement : MonoBehaviour
         dashCD = 3f;
         timerDash = dashCD;
         balizaON = false;
+        exitManager = GameObject.FindGameObjectWithTag("ExitManager").GetComponent<ExitManager>();
     }
 
     void Update ()
@@ -67,12 +70,12 @@ public class Movement : MonoBehaviour
             speed = NORMALSPEED;
         }
 
-        if(Input.GetKeyDown(KeyCode.Space) && timerDash > dashCD){
+        if(Input.GetKeyDown(KeyCode.Space) && timerDash > dashCD && !exitManager.pause){
             rb2d.AddForce(transform.up*dashForce);
             timerDash = 0f;   
         }
 
-        if(Input.GetKeyDown(KeyCode.E)){
+        if(Input.GetKeyDown(KeyCode.E) && !exitManager.pause){
             
             if(!balizaON){
                 balizaInstantiated = Instantiate(baliza, transform.position, Quaternion.identity);
