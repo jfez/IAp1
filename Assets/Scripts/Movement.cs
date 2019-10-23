@@ -5,19 +5,18 @@ using UnityEngine;
 public class Movement : MonoBehaviour
 {
     const float NORMALSPEED = 100f;
-    const float RUNNINGSPEED = 150;
-    const float STEALTHSPEED = 50;
+    const float RUNNINGSPEED = 150f;
+    const float STEALTHSPEED = 50f;
 
     public GameObject baliza;
     
 
-    private float speed;             //Floating point variable to store the player's movement speed.
-    //private Rigidbody2D rb2d;       //Store a reference to the Rigidbody2D component required to use 2D Physics.
+    [HideInInspector]public float speed;             //Floating point variable to store the player's movement speed.
 
     private Rigidbody rb2d;
     private Vector2 moveVelocity;
-    private float horizontal;
-    private float vertical;
+    [HideInInspector] public float horizontal;
+    [HideInInspector] public float vertical;
     private Vector3 moveFor;
     private Vector3 moveSide;
     private int floorMask;

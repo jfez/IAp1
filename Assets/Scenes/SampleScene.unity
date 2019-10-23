@@ -112,6 +112,24 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &11750470 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1935805222176362026, guid: 26ba0e5d5d78ba1419d6d25a26757705,
+    type: 3}
+  m_PrefabInstance: {fileID: 1935805220827877178}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &11750478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11750470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ace1537e9d7a7f449a7d54379d156ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &17129583
 GameObject:
   m_ObjectHideFlags: 0
@@ -622,7 +640,11 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512
+  balizaMask:
+    serializedVersion: 2
+    m_Bits: 4096
   visibleTargets: []
+  visibleBalizas: []
   meshResolution: 10
   viewMeshFilter: {fileID: 1258873109}
   maskCutawayDst: 0
@@ -1801,6 +1823,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baliza: {fileID: 0}
+  speed: 0
+  horizontal: 0
+  vertical: 0
   timerDash: 0
   dashCD: 0
   balizaON: 0
@@ -2037,7 +2062,11 @@ MonoBehaviour:
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512
+  balizaMask:
+    serializedVersion: 2
+    m_Bits: 0
   visibleTargets: []
+  visibleBalizas: []
   meshResolution: 10
   viewMeshFilter: {fileID: 322648424}
   maskCutawayDst: 0
@@ -2070,6 +2099,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   baliza: {fileID: 0}
+  speed: 0
+  horizontal: 0
+  vertical: 0
   timerDash: 0
   dashCD: 0
   balizaON: 0
@@ -2343,6 +2375,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 180
       objectReference: {fileID: 0}
+    - target: {fileID: 1041044907523319267, guid: a741d99add749ca48b52a6f089810bb1,
+        type: 3}
+      propertyPath: balizaMask.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a741d99add749ca48b52a6f089810bb1, type: 3}
 --- !u!1001 &1935805220827877178
@@ -2427,6 +2464,11 @@ PrefabInstance:
       propertyPath: wayPointList.Array.data[2]
       value: 
       objectReference: {fileID: 1666889665}
+    - target: {fileID: 1935805222176362027, guid: 26ba0e5d5d78ba1419d6d25a26757705,
+        type: 3}
+      propertyPath: balizaMask.m_Bits
+      value: 4096
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ba0e5d5d78ba1419d6d25a26757705, type: 3}
 --- !u!1001 &7989058007679937356

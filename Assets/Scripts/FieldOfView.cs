@@ -12,9 +12,12 @@ public class FieldOfView : MonoBehaviour
 
     public LayerMask targetMask;
     public LayerMask obstacleMask;
+    public LayerMask balizaMask;
 
     [HideInInspector]
     public List<Transform> visibleTargets = new List<Transform>();
+    [HideInInspector]
+    public List<Transform> visibleBalizas = new List<Transform>();
 
     public float meshResolution;
 
@@ -58,8 +61,10 @@ public class FieldOfView : MonoBehaviour
     void FindVisibleTarget(){
         
         visibleTargets.Clear();
+        visibleBalizas.Clear();
         
         Collider[] targetsInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, targetMask);
+        Collider[] balizasInViewRadius = Physics.OverlapSphere(transform.position, viewRadius, balizaMask);
         
 
 
@@ -74,6 +79,22 @@ public class FieldOfView : MonoBehaviour
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)){
                     visibleTargets.Add(target);
                     //print("te cacé!");
+                }
+            }
+
+        }
+
+        for (int i = 0; i < balizasInViewRadius.Length; i++){
+            Transform target = balizasInViewRadius[i].transform;
+            Vector3 dirToTarget = (target.position - transform.position).normalized;
+
+            
+            if(Vector3.Angle(transform.up, dirToTarget) < viewAngle/2){
+                float dstToTarget = Vector3.Distance(transform.position, target.position);
+
+                if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)){
+                    visibleBalizas.Add(target);
+                    //print("baliza!");
                 }
             }
 
