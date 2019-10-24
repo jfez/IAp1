@@ -8272,6 +8272,11 @@ PrefabInstance:
       propertyPath: balizaMask.m_Bits
       value: 4096
       objectReference: {fileID: 0}
+    - target: {fileID: 1935805222176362027, guid: 26ba0e5d5d78ba1419d6d25a26757705,
+        type: 3}
+      propertyPath: viewAngle
+      value: 136
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ba0e5d5d78ba1419d6d25a26757705, type: 3}
 --- !u!1 &7599033161374405408
