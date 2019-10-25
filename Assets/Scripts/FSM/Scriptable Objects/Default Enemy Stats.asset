@@ -18,5 +18,5 @@ MonoBehaviour:
   attackRate: 1
   attackForce: 15
   attackDamgae: 50
-  searchDuration: 4
+  searchDuration: 8
   searchingTurnSpeed: 5

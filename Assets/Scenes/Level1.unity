@@ -130,6 +130,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2ace1537e9d7a7f449a7d54379d156ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  movement: {fileID: 0}
+  target: {fileID: 0}
+  timer: 0
+  maxTime: 0
+  secureDistance: 0
+  added: 0
 --- !u!1 &17129583
 GameObject:
   m_ObjectHideFlags: 0
@@ -3308,9 +3314,11 @@ MonoBehaviour:
   - {fileID: 1666889665}
   nextWayPoint: 0
   chaseTarget: {fileID: 0}
+  warnedPoint: {fileID: 0}
   stateTimeElapsed: 0
   aStarUnit: {fileID: 0}
   fieldOfView: {fileID: 0}
+  soundListener: {fileID: 0}
   timer: 0
   timing: 0
 --- !u!1 &561475539
@@ -8349,6 +8357,11 @@ PrefabInstance:
       propertyPath: viewAngle
       value: 136
       objectReference: {fileID: 0}
+    - target: {fileID: 1935805222176362024, guid: 26ba0e5d5d78ba1419d6d25a26757705,
+        type: 3}
+      propertyPath: turnDist
+      value: 0.5
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 26ba0e5d5d78ba1419d6d25a26757705, type: 3}
 --- !u!1 &7599033161374405408
@@ -8523,7 +8536,7 @@ PrefabInstance:
     - target: {fileID: 7989058007363373368, guid: c792384d3c79db24c93e54519a80d8de,
         type: 3}
       propertyPath: obstacleProximityPenalty
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 7989058007363373368, guid: c792384d3c79db24c93e54519a80d8de,
         type: 3}

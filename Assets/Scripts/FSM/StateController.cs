@@ -13,10 +13,12 @@ public class StateController : MonoBehaviour
 
     [HideInInspector] public int nextWayPoint;
     [HideInInspector] public Transform chaseTarget;
+    [HideInInspector] public Vector3 warnedPoint;
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public Unit aStarUnit;
 
     [HideInInspector] public FieldOfView fieldOfView;
+    [HideInInspector] public StepSounds soundListener;
 
     [HideInInspector] public float timer;
     [HideInInspector] public bool timing;
@@ -28,6 +30,7 @@ public class StateController : MonoBehaviour
     {
         aStarUnit = GetComponent<Unit>();
         fieldOfView = GetComponent<FieldOfView>();
+        soundListener = GetComponent<StepSounds>();
         timing = false;
         timer = 0f;
     }
