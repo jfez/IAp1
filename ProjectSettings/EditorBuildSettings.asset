@@ -14,4 +14,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Stencil.unity
     guid: 59416b9a791b741489216087ab9780e8
+  - enabled: 1
+    path: Assets/Scenes/Levels.unity
+    guid: ece86240f09068f4bbcf55b4c6804425
+  - enabled: 1
+    path: Assets/Scenes/Credits.unity
+    guid: 92926a80337054a4d92489f31d8de4b1
   m_configObjects: {}

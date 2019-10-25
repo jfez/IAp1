@@ -22,13 +22,23 @@ public class ButtonsManager : MonoBehaviour
 
     }
 
+    public void Play2(){
+        SceneManager.LoadScene("Stencil");
+
+    }
+
+    public void BackMenu(){
+        SceneManager.LoadScene("Initial");
+
+    }
+
     public void Levels(){
-        //SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Levels");
 
     }
 
     public void Credits(){
-        //SceneManager.LoadScene("Level1");
+        SceneManager.LoadScene("Credits");
 
     }
 
