@@ -92,6 +92,7 @@ GameObject:
   - component: {fileID: 1935805222176362025}
   - component: {fileID: 1935805222176362024}
   - component: {fileID: 1935805222176362027}
+  - component: {fileID: 11750478}
   m_Layer: 11
   m_Name: FSM_ENEMY (1)
   m_TagString: Enemies
@@ -106,7 +107,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1935805222176362026}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 18.47, y: -4.97, z: 0}
   m_LocalScale: {x: 0.31180707, y: 0.31180707, z: 0.31180707}
   m_Children:
@@ -205,6 +206,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentState: {fileID: 11400000, guid: 57e43bbe987a1ca45b1b798ebfcbcf1c, type: 2}
   enemyStats: {fileID: 11400000, guid: 33a3c9f98dfc17f41ac328830ca426c2, type: 2}
+  bullet: {fileID: 7564339520071147222, guid: 3fbc94443e7eb4340acbc25ac573b5ca, type: 3}
   eyes: {fileID: 1935805222176362029}
   remainState: {fileID: 11400000, guid: 06ae4346b6a985d48a2227222cc09a0c, type: 2}
   wayPointList:
@@ -213,9 +215,11 @@ MonoBehaviour:
   - {fileID: 0}
   nextWayPoint: 0
   chaseTarget: {fileID: 0}
+  warnedPoint: {x: 0, y: 0, z: 0}
   stateTimeElapsed: 0
   aStarUnit: {fileID: 0}
   fieldOfView: {fileID: 0}
+  soundListener: {fileID: 0}
   timer: 0
   timing: 0
 --- !u!114 &1935805222176362024
@@ -233,7 +237,7 @@ MonoBehaviour:
   timeElapsedSinceLastSearch: 0
   speed: 2
   turnSpeed: 5
-  turnDist: 5
+  turnDist: 0.5
   stoppingDist: 10
 --- !u!114 &1935805222176362027
 MonoBehaviour:
@@ -248,14 +252,36 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   viewRadius: 15.48
-  viewAngle: 66
+  viewAngle: 136
   targetMask:
     serializedVersion: 2
     m_Bits: 1024
   obstacleMask:
     serializedVersion: 2
     m_Bits: 512
+  balizaMask:
+    serializedVersion: 2
+    m_Bits: 4096
   visibleTargets: []
+  visibleBalizas: []
   meshResolution: 10
   viewMeshFilter: {fileID: 1935805221908646635}
   maskCutawayDst: 0
+--- !u!114 &11750478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1935805222176362026}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2ace1537e9d7a7f449a7d54379d156ba, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movement: {fileID: 0}
+  target: {fileID: 0}
+  timer: 0
+  maxTime: 0
+  secureDistance: 0
+  added: 0

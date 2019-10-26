@@ -7,6 +7,7 @@ public class StateController : MonoBehaviour
 
     public State currentState;
     public EnemyStats enemyStats;
+    public GameObject bullet;
     public Transform eyes;
     public State remainState;
     public List<Transform> wayPointList;

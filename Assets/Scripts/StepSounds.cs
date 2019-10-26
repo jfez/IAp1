@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class StepSounds : MonoBehaviour
 {
-    public Movement movement;
-    public Transform target;
+    [HideInInspector] public Movement movement;
+    [HideInInspector] public Transform target;
     public float timer;
     public float maxTime;
     public float secureDistance;

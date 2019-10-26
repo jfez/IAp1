@@ -15,8 +15,8 @@ MonoBehaviour:
   moveSpeed: 2.5
   lookRange: 15
   attackRange: 1
-  attackRate: 1
-  attackForce: 15
-  attackDamgae: 50
+  attackRate: 2
+  attackForce: 500
+  attackDamage: 50
   searchDuration: 8
   searchingTurnSpeed: 5

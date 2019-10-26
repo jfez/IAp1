@@ -12,18 +12,24 @@ public class AttackAction : Action
 
     private void Attack(StateController controller)
     {
-        RaycastHit hit;
-
-        Debug.DrawRay(controller.eyes.position, controller.eyes.forward.normalized * controller.enemyStats.attackRange, Color.red);
-
-        if (Physics.SphereCast(controller.eyes.position, controller.enemyStats.lookRange, controller.eyes.forward, out hit, controller.enemyStats.attackRange)
-            && hit.collider.CompareTag("Player"))
+        if (controller.CheckIfCountDownElapsed(controller.enemyStats.attackRate))
         {
-            if (controller.CheckIfCountDownElapsed(controller.enemyStats.attackRate))
-            {
-                Debug.Log("Aplastando...");
-                //controller.tankShooting.Fire(controller.enemyStats.attackForce, controller.enemyStats.attackRate);
-            }
+            GameObject instance = Instantiate(controller.bullet, controller.transform.position, controller.transform.rotation);
+            Rigidbody rigidbody = instance.GetComponent<Rigidbody>();
+            rigidbody.AddRelativeForce((Vector3.up + new Vector3(-0.25f, 0f, 0f)).normalized * controller.enemyStats.attackForce);
+            rigidbody.AddRelativeTorque(Vector3.forward * controller.enemyStats.attackForce);
+
+            instance = Instantiate(controller.bullet, controller.transform.position, controller.transform.rotation);
+            rigidbody = instance.GetComponent<Rigidbody>();
+            rigidbody.AddRelativeForce(Vector3.up * controller.enemyStats.attackForce * 0.9f);
+            rigidbody.AddRelativeTorque(Vector3.forward * controller.enemyStats.attackForce * 0.9f);
+
+            instance = Instantiate(controller.bullet, controller.transform.position, controller.transform.rotation);
+            rigidbody = instance.GetComponent<Rigidbody>();
+            rigidbody.AddRelativeForce((Vector3.up + new Vector3(0.25f, 0f, 0f)).normalized * controller.enemyStats.attackForce * 0.8f);
+            rigidbody.AddRelativeTorque(Vector3.forward * controller.enemyStats.attackForce * 0.8f);
+
+            controller.stateTimeElapsed = 0f;
         }
     }
 }
