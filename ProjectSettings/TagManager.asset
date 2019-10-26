@@ -8,6 +8,8 @@ TagManager:
   - ExitManager
   - Bullet
   - Wall
+  - SceneController
+  - Player1
   layers:
   - Default
   - TransparentFX
