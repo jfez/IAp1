@@ -77,6 +77,9 @@ public class FieldOfView : MonoBehaviour
                 float dstToTarget = Vector3.Distance(transform.position, target.position);
 
                 if (!Physics.Raycast(transform.position, dirToTarget, dstToTarget, obstacleMask)){
+                    //si nos descubre la cámara, alerta a los enemigos cercanos
+                    //si nos descubre un enemigo, viene a buscarnos él mismo
+                    
                     visibleTargets.Add(target);
                     //print("te cacé!");
                 }

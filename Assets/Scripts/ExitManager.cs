@@ -8,18 +8,21 @@ public class ExitManager : MonoBehaviour
     public GameObject canvasPause;
 
     [HideInInspector] public bool pause;
+
+    private PlayerLife playerLife;
     
     // Start is called before the first frame update
     void Start()
     {
         canvasPause.SetActive(false);
         pause = false;
+        playerLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLife>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.Escape) && !pause){
+        if (Input.GetKeyDown(KeyCode.Escape) && !pause && !playerLife.dead){
             canvasPause.SetActive(true);
             pause = true;
             Time.timeScale = 0f;
@@ -47,6 +50,13 @@ public class ExitManager : MonoBehaviour
         pause = false;
         Time.timeScale = 1f;
         SceneManager.LoadScene("Initial");
+
+    }
+
+    public void PlayAgain(){
+        
+        SceneManager.LoadScene("Level1");
+        Time.timeScale = 1.0f;
 
     }
 }

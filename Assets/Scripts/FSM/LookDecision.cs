@@ -16,6 +16,9 @@ public class LookDecision : Decision
     {
         if (controller.fieldOfView.visibleTargets.Count != 0) {
                 controller.chaseTarget = controller.fieldOfView.visibleTargets[0].transform;
+                controller.exclamation.SetActive(true);
+                controller.chaseSound.Play();
+                //controller.speed = 14f;
                 return true;
         }
         return false;

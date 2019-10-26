@@ -22,10 +22,12 @@ public class LostDecision : Decision
 
                 else{
                     //Time after lost the target that the enemy waits to return to his patrol
-                    if(controller.timer > 2){
+                    if(controller.timer > 3){
                         controller.StopTiming();
                         controller.chaseTarget = null;
                         controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
+                        controller.exclamation.SetActive(false);
+                        //controller.speed = 2f;
                         return true;
                     }
                 }

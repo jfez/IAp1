@@ -16,6 +16,7 @@ public class ChaseAction : Action
         {
             controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.chaseTarget));
             controller.aStarUnit.timeElapsedSinceLastSearch = 0;
+            
         }
     }
 }

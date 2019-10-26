@@ -24,11 +24,26 @@ public class Movement : MonoBehaviour
     [HideInInspector] public float timerDash;
     [HideInInspector] public float dashCD;
 
+    [HideInInspector] public float timerBaliza;
+    [HideInInspector] public float balizaCD;
+
     [HideInInspector] public bool balizaON;
+    [HideInInspector] public bool exit;
 
     private GameObject balizaInstantiated;
 
     private ExitManager exitManager;
+
+    public GameObject shield;
+    [HideInInspector] public bool growingShield;
+
+    [HideInInspector] public float timerShield;
+    [HideInInspector] public float shieldCD;
+    private float growingSpeed;
+    [HideInInspector] public bool shieldActive;
+    
+
+
 
 
     // Use this for initialization
@@ -44,8 +59,17 @@ public class Movement : MonoBehaviour
         dashForce = 7500f;
         dashCD = 3f;
         timerDash = dashCD;
+        balizaCD = 15f;
+        timerBaliza = balizaCD;
+        shieldCD = 10f;
+        timerShield = shieldCD;
         balizaON = false;
         exitManager = GameObject.FindGameObjectWithTag("ExitManager").GetComponent<ExitManager>();
+        exit = false;
+        shield.SetActive(false);
+        growingShield = false;
+        growingSpeed = 10f;
+        shieldActive = false;
     }
 
     void Update ()
@@ -75,7 +99,7 @@ public class Movement : MonoBehaviour
             timerDash = 0f;   
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && !exitManager.pause){
+        if(Input.GetKeyDown(KeyCode.E) && timerBaliza > balizaCD && !exitManager.pause){
             
             if(!balizaON){
                 balizaInstantiated = Instantiate(baliza, transform.position, Quaternion.identity);
@@ -87,9 +111,31 @@ public class Movement : MonoBehaviour
                 transform.position = balizaInstantiated.transform.position;
                 Destroy(balizaInstantiated);
                 balizaON = false;
+                timerBaliza = 0f;
 
             }
             
+        }
+
+        if(Input.GetKeyDown(KeyCode.R) && timerShield > shieldCD && !exitManager.pause && !growingShield &&!shieldActive){
+            shield.transform.localScale = new Vector3(0,0,0);
+            growingShield=true;
+            shield.SetActive(true);
+               
+            
+        }
+
+        if (growingShield){
+            if(shield.transform.localScale.x < 40){
+                shield.transform.localScale += new Vector3(1,1,1) * Time.deltaTime * growingSpeed;
+                
+
+            }
+
+            else{
+                growingShield = false;
+                shieldActive = true;
+            }
         }
 
 
@@ -100,6 +146,8 @@ public class Movement : MonoBehaviour
         vertical = Input.GetAxisRaw("Vertical");
 
         timerDash += Time.deltaTime;
+        timerBaliza += Time.deltaTime;
+        timerShield += Time.deltaTime;
 
         
 

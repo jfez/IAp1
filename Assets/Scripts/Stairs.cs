@@ -7,11 +7,13 @@ public class Stairs : MonoBehaviour
 {
 
     public int stairNum;
+
+    private Movement movement;
     
     // Start is called before the first frame update
     void Start()
     {
-        
+        movement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
     }
 
     // Update is called once per frame
@@ -20,14 +22,23 @@ public class Stairs : MonoBehaviour
         
     }
 
-    /// <summary>
-    /// OnTriggerEnter is called when the Collider other enters the trigger.
-    /// </summary>
-    /// <param name="other">The other Collider involved in this collision.</param>
+    
     void OnTriggerEnter(Collider other)
     {
         if (other.transform.gameObject.tag == "Player"){
-            SceneManager.LoadScene("Level1");
+            
+            if(stairNum == 0 && movement.exit){
+                SceneManager.LoadScene("Stencil");
+
+            }
+
+            if(stairNum == 1 && movement.exit){
+                SceneManager.LoadScene("Initial");
+
+            }
+
+            
+            
         }
     }
 }

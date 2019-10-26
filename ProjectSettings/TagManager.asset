@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - SceneController
   - Player1
+  - ChaseSound
+  - PiecesManager
   layers:
   - Default
   - TransparentFX

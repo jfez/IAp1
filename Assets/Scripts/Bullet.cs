@@ -4,11 +4,19 @@ using UnityEngine;
 
 public class Bullet : MonoBehaviour
 {
+    public float damageCaused;
+    private PlayerLife playerLife;
+
+    void Start(){
+        playerLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLife>();
+    }
+    
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Player"))
         {
-            // TODO: What happens when a bullet hits the player
+            playerLife.TakeDamage(damageCaused);
+            Destroy(gameObject);
         }
         else if (other.CompareTag("Wall"))
         {

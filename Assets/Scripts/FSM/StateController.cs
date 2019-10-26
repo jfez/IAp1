@@ -23,8 +23,15 @@ public class StateController : MonoBehaviour
 
     [HideInInspector] public float timer;
     [HideInInspector] public bool timing;
+    [HideInInspector] public float speed;
+    private Unit unit;
 
     private bool aiActive;
+
+    public GameObject exclamation;
+    public GameObject interrogation;
+
+    [HideInInspector] public AudioSource chaseSound;
     
 
     void Awake()
@@ -34,6 +41,11 @@ public class StateController : MonoBehaviour
         soundListener = GetComponent<StepSounds>();
         timing = false;
         timer = 0f;
+        unit = GetComponent<Unit>();
+        speed = unit.speed;
+        exclamation.SetActive(false);
+        interrogation.SetActive(false);
+        chaseSound = GameObject.FindGameObjectWithTag("ChaseSound").GetComponent<AudioSource>();
     }
 
     void Start()

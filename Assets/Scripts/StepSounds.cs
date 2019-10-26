@@ -6,10 +6,10 @@ public class StepSounds : MonoBehaviour
 {
     [HideInInspector] public Movement movement;
     [HideInInspector] public Transform target;
-    public float timer;
-    public float maxTime;
-    public float secureDistance;
-    public float added;
+    [HideInInspector] public float timer;
+    [HideInInspector] public float maxTime;
+    [HideInInspector] public float secureDistance;
+    [HideInInspector] public float added;
 
     //15 is a good secure distance
 
