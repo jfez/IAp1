@@ -9,6 +9,8 @@ public class Movement : MonoBehaviour
     const float STEALTHSPEED = 50f;
 
     public GameObject baliza;
+
+    public bool detected = false;
     
 
     [HideInInspector]public float speed;             //Floating point variable to store the player's movement speed.
@@ -97,7 +99,7 @@ public class Movement : MonoBehaviour
             timerDash = 0f;   
         }
 
-        if(Input.GetKeyDown(KeyCode.E) && timerBaliza > balizaCD && !exitManager.pause){
+        if(Input.GetKeyDown(KeyCode.E) && timerBaliza > balizaCD && !exitManager.pause && !detected){
             
             if(!balizaON){
                 balizaInstantiated = Instantiate(baliza, transform.position, Quaternion.identity);

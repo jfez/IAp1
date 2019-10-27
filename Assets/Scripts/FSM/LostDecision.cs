@@ -27,6 +27,7 @@ public class LostDecision : Decision
                         controller.chaseTarget = null;
                         controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
                         controller.exclamation.SetActive(false);
+                        GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>().detected = false;
                         //controller.speed = 2f;
                         return true;
                     }
