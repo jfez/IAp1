@@ -12,7 +12,7 @@ public class ChaseAction : Action
 
     private void Chase(StateController controller)
     {
-        if (controller.aStarUnit.timeElapsedSinceLastSearch >= 2f)        //.25f
+        if (controller.aStarUnit.timeElapsedSinceLastSearch >= 1f)        //.25f
         {
             controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.chaseTarget));
             controller.aStarUnit.timeElapsedSinceLastSearch = 0;

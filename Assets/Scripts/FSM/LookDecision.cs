@@ -26,8 +26,40 @@ public class LookDecision : Decision
             }
             else
             {
+                int i = 0;
                 StateController[] stateControllers = controller.allStateControllers;
-                foreach (StateController sC in stateControllers)
+                while (stateControllers[i].wanderer)
+                {
+                    i = Random.Range(0, stateControllers.Length);
+                }
+
+                StateController sC = stateControllers[i];
+                if (sC.currentState != sC.alertState && sC.currentState != sC.chaseState && controller.currentState != controller.scanState)
+                {
+                    sC.exclamation.SetActive(false);
+                    sC.interrogation.SetActive(true);
+                    sC.warnedPoint = controller.fieldOfView.visibleTargets[0].position;
+                    sC.TransitionToState(sC.alertState);
+                    sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(controller.fieldOfView.visibleTargets[0]));
+                }
+
+                sC = controller;
+                if (sC.currentState != sC.protectPiecesState)
+                {
+                    //if (Vector2.Distance(sC.eyes.position, sC.piecesWardPoint.position) < 1f) continue;
+                    sC.interrogation.SetActive(false);
+                    sC.exclamation.SetActive(true);
+                    sC.soundListener.movement.detected = true;
+                    sC.warnedPoint = sC.piecesWardPoint.position;
+                    sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(sC.piecesWardPoint));
+                    sC.TransitionToState(sC.protectPiecesState);
+                    for (int j = 0; j < 3; j++)
+                    {
+                        if (sC.piecesCollider[j] != null) sC.piecesCollider[j].enabled = false;
+                    }
+                }
+
+                /*    foreach (StateController sC in stateControllers)
                 {
                     if (!sC.wanderer && sC.currentState != sC.alertState && sC.currentState != sC.chaseState && controller.currentState != controller.scanState)
                     {
@@ -35,7 +67,7 @@ public class LookDecision : Decision
                         sC.interrogation.SetActive(true);
                         sC.warnedPoint = controller.fieldOfView.visibleTargets[0].position;
                         sC.TransitionToState(sC.alertState);
-                        sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(controller.fieldOfView.visibleTargets[0]));
+                        //sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(controller.fieldOfView.visibleTargets[0]));
                     }
                     else if (sC.currentState != sC.protectPiecesState)
                     {
@@ -51,7 +83,7 @@ public class LookDecision : Decision
                             if (sC.piecesCollider[i] != null) sC.piecesCollider[i].enabled = false;
                         }
                     }
-                }
+                }*/
             }
         }
         return false;

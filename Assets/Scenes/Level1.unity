@@ -10230,6 +10230,11 @@ PrefabInstance:
       propertyPath: gridWorldSize.y
       value: 45.2
       objectReference: {fileID: 0}
+    - target: {fileID: 7989058007363373368, guid: c792384d3c79db24c93e54519a80d8de,
+        type: 3}
+      propertyPath: nodeRadius
+      value: 0.75
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c792384d3c79db24c93e54519a80d8de, type: 3}
 --- !u!224 &8195894426694944650
