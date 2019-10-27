@@ -19,6 +19,13 @@ public class RecogniseDecision : Decision
             controller.interrogation.SetActive(false);
             controller.exclamation.SetActive(false);
             controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
+            if (controller.wanderer) {
+                controller.soundListener.movement.detected = false;
+                for (int i = 0; i < 3; i++)
+                {
+                    if (controller.piecesCollider[i] != null) controller.piecesCollider[i].enabled = true;
+                }
+            }
             return true;
         }
         return false;

@@ -15,37 +15,23 @@ public class LostDecision : Decision
     private bool Lost(StateController controller)
     {
         if (controller.fieldOfView.visibleTargets.Count == 0) {
-                
-                if(!controller.timing){
-                    controller.StartTiming();
+            if (!controller.timing){
+                controller.StartTiming();
+            }
+            else {
+                //Time after lost the target that the enemy waits to return to his patrol
+                if (controller.timer > 3){
+                    controller.StopTiming();
+                    controller.chaseTarget = null;
+                    controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
+                    controller.exclamation.SetActive(false);
+                    controller.interrogation.SetActive(false);
+                    controller.soundListener.movement.detected = false;
+                    //controller.speed = 2f;
+                    return true;
                 }
-
-                else{
-                    //Time after lost the target that the enemy waits to return to his patrol
-                    if(controller.timer > 3){
-                        controller.StopTiming();
-                        controller.chaseTarget = null;
-                        controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
-                        controller.exclamation.SetActive(false);
-                        GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>().detected = false;
-                        //controller.speed = 2f;
-                        return true;
-                    }
-                }
-                
+            }     
         }
         return false;
-        
-        /*Collider[] colliders = Physics.OverlapSphere(controller.eyes.position, controller.enemyStats.lookRange);
-        for (int i = 0; i < colliders.Length; i++)
-        {
-            if (colliders[i].CompareTag("Player"))
-            {
-                return false;
-            }
-        }
-        controller.chaseTarget = null;
-        controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
-        return true;*/
     }
 }

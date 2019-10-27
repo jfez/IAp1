@@ -6,14 +6,17 @@ public class StateController : MonoBehaviour
 {
 
     public State currentState;
-    public State triangleAlertState;
     public State chaseState;
+    public State protectPiecesState;
+    public State alertState;
+    public State scanState;
     public EnemyStats enemyStats;
     public GameObject bullet;
     public Transform eyes;
     public State remainState;
     public List<Transform> wayPointList;
     public Transform piecesWardPoint;
+    public BoxCollider[] piecesCollider;
 
     [HideInInspector] public int nextWayPoint;
     [HideInInspector] public Transform chaseTarget;
@@ -21,6 +24,7 @@ public class StateController : MonoBehaviour
     [HideInInspector] public Vector3 markerPoint;
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public Unit aStarUnit;
+    [HideInInspector] public StateController[] allStateControllers;
 
     [HideInInspector] public SphereCollider sphereCollider;
     [HideInInspector] public FieldOfView fieldOfView;
@@ -59,6 +63,7 @@ public class StateController : MonoBehaviour
     void Start()
     {
         aiActive = true;
+        allStateControllers = FindObjectsOfType<StateController>();
     }
 
     void Update()

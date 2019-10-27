@@ -27,12 +27,13 @@ public class TriangleLookDecision : Decision
                         sC.interrogation.SetActive(true);
                         sC.warnedPoint = controller.fieldOfView.visibleTargets[0].position;
                         sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(controller.fieldOfView.visibleTargets[0]));
-                        sC.TransitionToState(controller.triangleAlertState);
+                        sC.TransitionToState(controller.alertState);
                     }
                     else
                     {
                         sC.interrogation.SetActive(false);
                         sC.exclamation.SetActive(true);
+                        sC.soundListener.movement.detected = true;
                         sC.warnedPoint = controller.piecesWardPoint.position;
                         sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(controller.piecesWardPoint));
                     }
