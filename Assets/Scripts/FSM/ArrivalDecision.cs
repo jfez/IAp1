@@ -13,7 +13,7 @@ public class ArrivalDecision : Decision
 
     private bool Arrival(StateController controller)
     {
-        if (Vector2.Distance(controller.eyes.position, controller.wayPointList[controller.nextWayPoint].position) < 2)
+        if (Vector2.Distance(controller.eyes.position, controller.wayPointList[controller.nextWayPoint].position) < 5)
         {
             return true;
         }

@@ -32,7 +32,8 @@ public class CameraDetector : MonoBehaviour
                     sC.TransitionToState(triangleAlertState);
                 }
             }
+        } else if (playerInRange && fov.visibleTargets.Count == 0){
+            playerInRange = false;
         }
-        playerInRange = false;
     }
 }
