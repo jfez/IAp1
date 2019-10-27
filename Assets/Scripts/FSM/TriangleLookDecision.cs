@@ -36,6 +36,7 @@ public class TriangleLookDecision : Decision
                         sC.soundListener.movement.detected = true;
                         sC.warnedPoint = controller.piecesWardPoint.position;
                         sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(controller.piecesWardPoint));
+                        //Debug.Log("eh");
                     }
                 }
                 return true;
