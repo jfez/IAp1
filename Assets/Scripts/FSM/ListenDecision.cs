@@ -48,6 +48,7 @@ public class ListenDecision : Decision
                 }
                 if (randomNumber < prob + addedSpeed)
                 {
+                    controller.interrogation.SetActive(true);
                     controller.warnedPoint = controller.soundListener.target.position;
                     controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.soundListener.target));
                     return true;

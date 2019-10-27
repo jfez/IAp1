@@ -16,6 +16,8 @@ public class RecogniseDecision : Decision
         controller.transform.Rotate(0, 0, controller.enemyStats.searchingTurnSpeed * Time.deltaTime * 10f);
         if (controller.CheckIfCountDownElapsed(controller.enemyStats.searchDuration))
         {
+            controller.interrogation.SetActive(false);
+            controller.exclamation.SetActive(false);
             controller.aStarUnit.StartCoroutine(controller.aStarUnit.SearchPath(controller.wayPointList[controller.nextWayPoint]));
             return true;
         }

@@ -1,0 +1,26 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a10a5868920bcc41b2ea5b2976568f5, type: 3}
+  m_Name: Destroy Marker State
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: e159aa4ae77f2694eaf5c2bf44f38223, type: 2}
+    trueState: {fileID: 11400000, guid: 61cdefd02b7a22d4f817c1744a98c968, type: 2}
+    falseState: {fileID: 11400000, guid: 06ae4346b6a985d48a2227222cc09a0c, type: 2}
+  - decision: {fileID: 11400000, guid: 8aada82895c5de44cbf587c2e9db56f0, type: 2}
+    trueState: {fileID: 11400000, guid: 2ce6890278e83bd4da26e140b27142d7, type: 2}
+    falseState: {fileID: 11400000, guid: 06ae4346b6a985d48a2227222cc09a0c, type: 2}
+  - decision: {fileID: 11400000, guid: 04d986bb13f7bb04098cfae35bcd6c7f, type: 2}
+    trueState: {fileID: 11400000, guid: 6c4ae524b59fabe4a82d015d503ab0f2, type: 2}
+    falseState: {fileID: 11400000, guid: 06ae4346b6a985d48a2227222cc09a0c, type: 2}
+  sceneGizmoColor: {r: 1, g: 0, b: 0.3598299, a: 1}

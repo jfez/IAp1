@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2a10a5868920bcc41b2ea5b2976568f5, type: 3}
+  m_Name: Triangle Alert State
+  m_EditorClassIdentifier: 
+  actions: []
+  transitions:
+  - decision: {fileID: 11400000, guid: 8aada82895c5de44cbf587c2e9db56f0, type: 2}
+    trueState: {fileID: 11400000, guid: 2ce6890278e83bd4da26e140b27142d7, type: 2}
+    falseState: {fileID: 11400000, guid: 06ae4346b6a985d48a2227222cc09a0c, type: 2}
+  - decision: {fileID: 11400000, guid: 36b98e6750cb7cb49bbea46c3716379f, type: 2}
+    trueState: {fileID: 11400000, guid: d43f39a91d7d61547a639e0a7bd2f055, type: 2}
+    falseState: {fileID: 11400000, guid: 06ae4346b6a985d48a2227222cc09a0c, type: 2}
+  sceneGizmoColor: {r: 1, g: 0.9753064, b: 0, a: 1}

@@ -41,8 +41,6 @@ public class Movement : MonoBehaviour
     [HideInInspector] public float shieldCD;
     private float growingSpeed;
     [HideInInspector] public bool shieldActive;
-    
-
 
 
 
@@ -108,11 +106,12 @@ public class Movement : MonoBehaviour
             }
 
             else{
-                transform.position = balizaInstantiated.transform.position;
-                Destroy(balizaInstantiated);
-                balizaON = false;
-                timerBaliza = 0f;
-
+                if (balizaInstantiated != null) {
+                    transform.position = balizaInstantiated.transform.position;
+                    Destroy(balizaInstantiated);
+                    balizaON = false;
+                    timerBaliza = 0f;
+                }
             }
             
         }

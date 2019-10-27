@@ -6,18 +6,23 @@ public class StateController : MonoBehaviour
 {
 
     public State currentState;
+    public State triangleAlertState;
+    public State chaseState;
     public EnemyStats enemyStats;
     public GameObject bullet;
     public Transform eyes;
     public State remainState;
     public List<Transform> wayPointList;
+    public Transform piecesWardPoint;
 
     [HideInInspector] public int nextWayPoint;
     [HideInInspector] public Transform chaseTarget;
     [HideInInspector] public Vector3 warnedPoint;
+    [HideInInspector] public Vector3 markerPoint;
     [HideInInspector] public float stateTimeElapsed;
     [HideInInspector] public Unit aStarUnit;
 
+    [HideInInspector] public SphereCollider sphereCollider;
     [HideInInspector] public FieldOfView fieldOfView;
     [HideInInspector] public StepSounds soundListener;
 
@@ -32,11 +37,14 @@ public class StateController : MonoBehaviour
     public GameObject interrogation;
 
     [HideInInspector] public AudioSource chaseSound;
-    
+
+    [Header("Only for triangles")]
+    public bool wanderer = false;
 
     void Awake()
     {
         aStarUnit = GetComponent<Unit>();
+        sphereCollider = GetComponent<SphereCollider>();
         fieldOfView = GetComponent<FieldOfView>();
         soundListener = GetComponent<StepSounds>();
         timing = false;
