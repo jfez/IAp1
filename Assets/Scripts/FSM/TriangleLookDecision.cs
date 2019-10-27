@@ -33,6 +33,7 @@ public class TriangleLookDecision : Decision
                     {
                         sC.interrogation.SetActive(false);
                         sC.exclamation.SetActive(true);
+                        controller.chaseSound.Play();
                         sC.soundListener.movement.detected = true;
                         sC.warnedPoint = controller.piecesWardPoint.position;
                         sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(controller.piecesWardPoint));

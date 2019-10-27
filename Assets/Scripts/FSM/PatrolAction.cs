@@ -38,7 +38,7 @@ public class PatrolAction : Action
             if (rnd < 0.7f){
                 //controller.enemyStats.moveSpeed = 1.5f;
                 controller.nextWayPoint = (controller.nextWayPoint + 1) % controller.wayPointList.Count;
-                Debug.Log("sigo");
+                //Debug.Log("sigo");
 
             }
 
@@ -46,7 +46,7 @@ public class PatrolAction : Action
                 //WATCH OUT because it changes in the Scriptable Object
                 //controller.enemyStats.moveSpeed = 0;
                 controller.nextWayPoint = (controller.nextWayPoint + 1) % controller.wayPointList.Count;
-                Debug.Log("paro");
+                //Debug.Log("paro");
 
 
             }
