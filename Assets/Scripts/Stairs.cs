@@ -9,9 +9,8 @@ public class Stairs : MonoBehaviour
     public int stairNum;
 
     private Movement movement;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         movement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
     }

@@ -10,13 +10,17 @@ public class ExitManager : MonoBehaviour
     [HideInInspector] public bool pause;
 
     private PlayerLife playerLife;
-    
+
+    private void Awake()
+    {
+        playerLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLife>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         canvasPause.SetActive(false);
         pause = false;
-        playerLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLife>();
     }
 
     // Update is called once per frame

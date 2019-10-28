@@ -9,9 +9,8 @@ public class DashTimer : MonoBehaviour
 
     private Color imageColor;
     private Movement playerMovement;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         timerImage = GetComponent<Image>();
         playerMovement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();

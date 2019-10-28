@@ -5,9 +5,8 @@ using UnityEngine;
 public class PieceCollected1 : MonoBehaviour
 {
     private PiecesManagement1 piecesManagement1;
-    
-    // Start is called before the first frame update
-    void Start()
+
+    private void Awake()
     {
         piecesManagement1 = GameObject.FindGameObjectWithTag("PiecesManager").GetComponent<PiecesManagement1>();
     }

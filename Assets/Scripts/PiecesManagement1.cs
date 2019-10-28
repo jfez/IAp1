@@ -6,12 +6,16 @@ public class PiecesManagement1 : MonoBehaviour
 {
     [HideInInspector] public int piecesCollected;
     private Movement movement;
-    
+
+    private void Awake()
+    {
+        movement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
+    }
+
     // Start is called before the first frame update
     void Start()
     {
         piecesCollected = 0;
-        movement = GameObject.FindGameObjectWithTag("Player").GetComponent<Movement>();
     }
 
     // Update is called once per frame

@@ -7,7 +7,8 @@ public class Bullet : MonoBehaviour
     public float damageCaused;
     private PlayerLife playerLife;
 
-    void Start(){
+    private void Awake()
+    {
         playerLife = GameObject.FindGameObjectWithTag("Player").GetComponent<PlayerLife>();
     }
     

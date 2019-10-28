@@ -44,7 +44,10 @@ public class Movement : MonoBehaviour
     private float growingSpeed;
     [HideInInspector] public bool shieldActive;
 
-
+    private void Awake()
+    {
+        exitManager = GameObject.FindGameObjectWithTag("ExitManager").GetComponent<ExitManager>();
+    }
 
     // Use this for initialization
     void Start()
@@ -64,7 +67,6 @@ public class Movement : MonoBehaviour
         shieldCD = 10f;
         timerShield = shieldCD;
         balizaON = false;
-        exitManager = GameObject.FindGameObjectWithTag("ExitManager").GetComponent<ExitManager>();
         exit = false;
         shield.SetActive(false);
         growingShield = false;
