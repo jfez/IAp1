@@ -12,7 +12,7 @@ public class AttackAction : Action
 
     private void Attack(StateController controller)
     {
-        if (controller.CheckIfCountDownElapsed(controller.enemyStats.attackRate))
+        if (controller.CheckIfCountDownElapsed(controller.enemyStats.attackRate) && Vector2.Distance(GameObject.FindGameObjectWithTag("Player").gameObject.transform.position, controller.eyes.position) < controller.enemyStats.attackRange)
         {
             GameObject instance = Instantiate(controller.bullet, controller.transform.position + new Vector3(0,0,-1), controller.transform.rotation);
             Rigidbody rigidbody = instance.GetComponent<Rigidbody>();

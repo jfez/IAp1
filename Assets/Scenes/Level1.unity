@@ -2183,12 +2183,23 @@ PrefabInstance:
       propertyPath: wayPointList.Array.data[6]
       value: 
       objectReference: {fileID: 844265361}
+    - target: {fileID: 6664251633800413693, guid: 69cee140b3f3d524e846f333afdbf66a,
+        type: 3}
+      propertyPath: enemyStats
+      value: 
+      objectReference: {fileID: 11400000, guid: 982f29992767f614fb057eaf207fc48a,
+        type: 2}
     - target: {fileID: 6664251633800413688, guid: 69cee140b3f3d524e846f333afdbf66a,
         type: 3}
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: 436f94b91aeaa3944bbd084f21350e02,
         type: 3}
+    - target: {fileID: 6664251633800413695, guid: 69cee140b3f3d524e846f333afdbf66a,
+        type: 3}
+      propertyPath: viewAngle
+      value: 93
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69cee140b3f3d524e846f333afdbf66a, type: 3}
 --- !u!43 &433303931
@@ -9624,12 +9635,12 @@ PrefabInstance:
     - target: {fileID: 1041044907523319270, guid: a741d99add749ca48b52a6f089810bb1,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: -34.7
+      value: -31.78
       objectReference: {fileID: 0}
     - target: {fileID: 1041044907523319270, guid: a741d99add749ca48b52a6f089810bb1,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: -14.2
+      value: -12.23
       objectReference: {fileID: 0}
     - target: {fileID: 1041044907523319270, guid: a741d99add749ca48b52a6f089810bb1,
         type: 3}
@@ -9988,6 +9999,18 @@ PrefabInstance:
       propertyPath: piecesCollider.Array.data[2]
       value: 
       objectReference: {fileID: 2116039281}
+    - target: {fileID: 6664251633800413693, guid: 69cee140b3f3d524e846f333afdbf66a,
+        type: 3}
+      propertyPath: enemyStats
+      value: 
+      objectReference: {fileID: 11400000, guid: e2ed1d8fda8cf6c47ada3bda9211ff2f,
+        type: 2}
+    - target: {fileID: 6664251633800413693, guid: 69cee140b3f3d524e846f333afdbf66a,
+        type: 3}
+      propertyPath: bullet
+      value: 
+      objectReference: {fileID: 4943507104445233192, guid: 4c42e255b76999242a3c8f3c3b15ca68,
+        type: 3}
     - target: {fileID: 6664251633800413688, guid: 69cee140b3f3d524e846f333afdbf66a,
         type: 3}
       propertyPath: m_Sprite
@@ -10008,6 +10031,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Color.b
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6664251633800413695, guid: 69cee140b3f3d524e846f333afdbf66a,
+        type: 3}
+      propertyPath: viewAngle
+      value: 69
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 69cee140b3f3d524e846f333afdbf66a, type: 3}
