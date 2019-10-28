@@ -9278,7 +9278,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 95c77e153af987b4992de814e81de504, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  triangleAlertState: {fileID: 11400000, guid: 72060be7afdb2a546bf4c7e34e0eb31b, type: 2}
+  triangleAlertState: {fileID: 11400000, guid: 6c4ae524b59fabe4a82d015d503ab0f2, type: 2}
 --- !u!1 &2116039279
 GameObject:
   m_ObjectHideFlags: 0
