@@ -50,12 +50,12 @@ public class LookDecision : Decision
                 }
 
                 sC = controller;
-                if (sC.currentState != sC.protectPiecesState)
+                if (sC.currentState != sC.protectPiecesState && sC.currentState != sC.scanState)
                 {
                     //if (Vector2.Distance(sC.eyes.position, sC.piecesWardPoint.position) < 1f) continue;
                     sC.interrogation.SetActive(false);
                     sC.exclamation.SetActive(true);
-                    sC.soundListener.movement.detected = true;
+                    //sC.soundListener.movement.detected = true;
                     sC.warnedPoint = sC.piecesWardPoint.position;
                     sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(sC.piecesWardPoint));
                     sC.TransitionToState(sC.protectPiecesState);

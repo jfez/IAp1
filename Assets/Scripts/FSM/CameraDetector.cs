@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class CameraDetector : MonoBehaviour
 {
-    public State triangleAlertState;
+    public State alertState;
 
     private FieldOfView fov;
     private bool playerInRange = false;
@@ -34,7 +34,7 @@ public class CameraDetector : MonoBehaviour
                     sC.interrogation.SetActive(true);
                     sC.warnedPoint = fov.visibleTargets[0].position;
                     sC.aStarUnit.StartCoroutine(sC.aStarUnit.SearchPath(fov.visibleTargets[0]));
-                    sC.TransitionToState(triangleAlertState);
+                    sC.TransitionToState(alertState);
                 }
             }*/
             if (stateControllers[2].currentState != stateControllers[2].chaseState){
@@ -42,7 +42,7 @@ public class CameraDetector : MonoBehaviour
                     stateControllers[2].interrogation.SetActive(true);
                     stateControllers[2].warnedPoint = fov.visibleTargets[0].position;
                     stateControllers[2].aStarUnit.StartCoroutine(stateControllers[2].aStarUnit.SearchPath(fov.visibleTargets[0]));
-                    stateControllers[2].TransitionToState(triangleAlertState);
+                    stateControllers[2].TransitionToState(alertState);
                     Debug.Log("Cuadrado a la cámara");
 
             }

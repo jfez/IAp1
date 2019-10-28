@@ -13,6 +13,7 @@ MonoBehaviour:
   m_Name: Default Enemy Stats
   m_EditorClassIdentifier: 
   moveSpeed: 1.5
+  chaseMultiplier: 1.5
   lookRange: 15
   attackRange: 1
   attackRate: 2

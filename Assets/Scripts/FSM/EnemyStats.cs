@@ -6,6 +6,8 @@ using UnityEngine;
 public class EnemyStats : ScriptableObject
 {
     public float moveSpeed = 1f;
+
+    public float chaseMultiplier = 1.3f;
     public float lookRange = 1f;
 
     public float attackRange = 1f;

@@ -64,6 +64,7 @@ public class StateController : MonoBehaviour
     {
         aiActive = true;
         allStateControllers = FindObjectsOfType<StateController>();
+        unit.chaseMultiplier = enemyStats.chaseMultiplier;
     }
 
     void Update()

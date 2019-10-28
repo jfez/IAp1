@@ -13,6 +13,8 @@ public class Unit : MonoBehaviour
     public float turnDist = 5;
     public float stoppingDist = 10;
 
+    [HideInInspector] public float chaseMultiplier;
+
     Path path;
 
     void Update()
@@ -100,7 +102,7 @@ public class Unit : MonoBehaviour
                 Vector3 direction = Vector3.SmoothDamp(transform.up.normalized, (path.lookPoints[pathIndex] - transform.position).normalized, ref velocity, Time.deltaTime * turnSpeed);
 
                 transform.up = new Vector3(direction.x, direction.y, 0f);
-                transform.Translate(Vector3.up * Time.deltaTime * speed * speedPercent, Space.Self);
+                transform.Translate(Vector3.up * Time.deltaTime * speed * speedPercent * chaseMultiplier, Space.Self);
             }
 
             yield return null;
